@@ -1,0 +1,13 @@
+{{ form_start(form) }}
+<div class="container-form">
+	<div class="container-login">
+		<div class="form-normal">
+			<div class="form-type">
+                {{form_row(form.name)}}
+            </div>
+            <button class="button-login-lg">{{ button_label|default('Save') }}</button>
+		</div>
+	</div>
+</div>
+
+{{ form_end(form) }}

@@ -1,0 +1,28 @@
+{{ form_start(form) }}
+<div class="container-form">
+	<div class="container-login">
+		<div class="form-normal">
+			<div class="form-type">
+				{{form_row(form.titre)}}
+			</div>
+			<div class="form-type">
+				{{form_row(form.numero)}}
+			</div>
+			<div class="form-select">
+				{{form_row(form.category)}}
+			</div>
+			<div class="form-type">
+				{{form_row(form.description)}}
+			</div>
+			<div class="form-type">
+				{{form_row(form.image)}}
+			</div>
+			<div class="form-type">
+				{{form_row(form.tarif)}}
+			</div>
+
+			<button class="button-login-lg">{{ button_label|default('Save') }}</button>
+		</div>
+	</div>
+</div>
+{{ form_end(form) }}

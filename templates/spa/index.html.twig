@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SpaController!
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1 class="titre-index">Notre SPA</h1>
+		<div class="spa-container">
+			<div class="spa-box">
+				<div class="spa-info">
+					<img src="{{ asset('ImagesHtml/' ~ "spaImage.jpg")}}" alt="...">
+				</div>
+				<div class="spa-info text">
+					<p>A la hauteur du lieu qui l'héberge, le Spa by Clarins sait prendre soin de ses hôtes. Actuellement plus grand Spa Hôtelier d’Europe, il s’étend sur une surface de 1600m2 entièrement dédiée aux soins.
+					Doté de 13 cabines dont 2 cabines duo, il possède notamment une suite privée de 50m2 équipée d'un sauna et d'un spa privatif.
+					</p>
+					<p>Avec son approche sportive, la cryothérapie, l’endermologie et la chiropraxie enrichissent l’offre des massages sportifs et esthétiques.
+					Hammams*, saunas*, salle de repos, studio de yoga, tisanerie et salon de coiffure Shu Uemura & Redken complèteront votre moment d’évasion.
+					</p>
+					<p>“Prendre du temps pour s'offrir un soin du visage ou du corps n'est plus un luxe mais une nécessité de la vie contemporaine. Aujourd'hui, être bien dans sa tête, ça commence par bien s'occuper de soi, chez Clarins, depuis toujours, notre mission est d'assurer votre bien-être et de mettre votre beauté en valeur.”
+					</p>
+					<p>Docteur Olivier Courtin-Clarins
+					</p>
+					<p>*Hammams & Saunas non mixtes.
+					</p>
+				</div>
+			</div>
+		</div>
+		<h1 style="text-align:center;">Nos Marques Partenaires</h1>
+		<div class="spa-box">
+
+			<div class="spa-info brand">
+				<img src="{{ asset('ImagesHtml/' ~ "clarins-logo.jpg")}}" alt="...">
+				<p>La belle histoire de Clarins commence à Paris en 1954.</p>
+				<p>
+					Jacques Courtin-Clarins a alors la vision d'une cosmétique moderne, au service de la beauté et du bien-être de toutes les femmes, prête à innover continuellement pour révéler et transmettre le pouvoir des plantes, qui agirait dans le respect de l'homme et de son environnement.</p>
+				<p>
+					Porté par ces convictions, il donne naissance à Clarins, présent aujourd'hui dans 141 pays avec les marques Clarins, My Blend et l'activité Spa, et se place numéro 1 des soins haut de gamme en Europe. Exportés dans le monde à 90%, ses produits restent formulés et conçus dans ses Laboratoires Clarins en France.</p>
+			</div>
+
+			<div class="spa-info brand">
+				<img src="{{ asset('ImagesHtml/' ~ "toofruit-logo.png")}}" alt="...">
+				<p>
+					TOOFRUIT est la 1ère marque dermatologique bio d'hygiène et de soin dédiée aux enfants pour les 6-12 ans.</p>
+				<p>
+					Elle possède des formules gourmandes avec des eaux et des parfums naturels de fruits. Les textures et les odeurs ludiques sont idéales pour aider les enfants à acquérir les bons gestes, dans des packagings éducatifs pour que prendre soin de sa peau soit un vrai jeu d'enfants.</p>
+				<p>
+					Elle se compose à l’heure actuelle d’une large gamme de 20 références d'hygiène et soin, pour le visage, le corps et les cheveux qui ne cesse d’innover.
+				</p>
+			</div>
+
+			<div class="spa-info brand">
+				<img src="{{ asset('ImagesHtml/' ~ "opi-logo.png")}}" alt="...">
+				<p>Numéro 1 mondial dans le secteur des produits professionnels pour les ongles, O.P.I est une marque américaine crée dans les années 80 dont la réputation d’excellence et la grande créativité ne sont plus à démontrer. Reconnue pour la haute technicité et la qualité de ses produits, la marque est aujourd’hui incontournable</p>
+				<p>
+					Ses produits et vernis sont proposés dans une multitude de couleurs, des plus sages aux plus vives en passant par les grands classiques indémodables et les teintes les plus tendances.</p>
+				<p>
+					La marque O.P.I est distribuée dans plus de 100 pays.
+				</p>
+			</div>
+		</div>
+	</div>
+{% endblock %}

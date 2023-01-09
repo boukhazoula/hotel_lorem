@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RestoController!{% endblock %}
+
+{% block body %}
+<h1 class="titre-index">Restaurant</h1>
+<div class="resto-container">
+    <div class="resto-box">
+        <div class="resto-info">
+        <img src="{{ asset('ImagesHtml/' ~ "feudebois.jpg")}}"/>
+        </div>
+        <div class="resto-info text">
+        <p>
+            Nous vous accueillons avec plaisir dans notre restaurant, un espace convivial et chaleureux pour profiter d’un repas gastronomique turque.
+        </p>
+         <p>
+            Notre cuisine est basée sur la fraîcheur de nos produits, accompagnée d’une cuisson au feu de bois.
+        </p>
+        <p>
+            Notre cuisine est basée sur la variété de nos plats, au niveau des entrées, des plats mais également des desserts. Des pizzas turques, de la viande marinée mais également le fameux dessert turc Kunefe.
+        </p>
+        </div>
+    </div>
+    <div class="resto-box">
+        <div class="resto-info test">
+            <p>
+                Si vous souhaitez prendre part à une éxperience cullinaire inoubliable
+            </p>
+            <p>
+                Pourquoi ne pas réserver une chambre ?
+            </p>
+        </div>
+        <div class="resto-info">
+             <img src="{{ asset('ImagesHtml/' ~ "restohotel.jpg")}}"/>
+        </div>
+    </div>
+
+    <div class="resto-box">
+        <div class="resto-info serie-image">
+            <img src="{{ asset('ImagesHtml/' ~ "I.png")}}"/>
+            <img src="{{ asset('ImagesHtml/' ~ "II.png")}}"/>
+            <img src="{{ asset('ImagesHtml/' ~ "III.png")}}"/>
+            </div>
+        </div>
+</div>
+{% endblock %}

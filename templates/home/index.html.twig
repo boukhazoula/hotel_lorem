@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!
+{% endblock %}
+
+{% block body %}
+{% for message in app.flashes('success') %}
+        <div class="alert alert-danger" role="alert">{{ message }}</div>
+    {% endfor %}
+<div class="home-container">
+	<div class="formulaire-container">
+		{{ form_start(form) }}
+		<div class="formulaire-dates">
+			{{ form_row(form.date_arrive)}}
+			{{ form_row(form.date_depart)}}
+            <button class="button-login">{{ button_label|default('Recherche') }}</button>
+		</div>
+		<div class="formulaire-button">
+			{{ form_row(form.category)}}
+			
+		</div>
+		{{ form_end(form) }}
+	</div>
+	<div class="resa-container">
+		{% if chambresDispo is defined %}
+			{% for chambres in chambresDispo %}
+				<div class="resa-box">
+					<img src="{{ asset('images/' ~ chambres.image)}}" alt="...">
+					<div class="resa-infobox">
+						<div class="resa-info">
+							{{ chambres.titre }}
+							<div class="special-info">
+								{{ chambres.category }}
+							</div>
+						</div>
+						<div class="resa-info">
+							{{ chambres.description }}
+						</div>
+						<div class="resa-info">
+							{{ chambres.tarif }}&euro;
+							<div class="special-info">
+								prix par nuit
+							</div>
+						</div>
+					</div>
+					<div class="resa-paybox">
+						<div class="resa-info">
+                        Total : {{ chambres.tarif * nb_jour }}&euro;
+                        </div>
+                        <div class="resa-info">
+                            {% set total = chambres.tarif * nb_jour %}
+									{% if app.user %}
+                                    <button class="warning-button-lg"><a href="{{ path('app_user_reservation',{
+                                        'id' : chambres.id,
+                                        'nom': chambres.titre,
+                                        'tarifUnit': chambres.tarif,
+                                        'date_arrive' : date_arrive.format('Y-m-d'),
+                                        'date_depart' : date_depart.format('Y-m-d'),
+                                        'total' : total
+                                    }) }}"
+                                    >Réserver</a></button>
+                                    {% endif %}
+                        </div>
+					</div>
+				</div>
+			{% endfor %}
+		{% endif %}
+	</div>
+    </div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Chambre index
+{% endblock %}
+
+{% block body %}
+	<h1 class="titre-index">Index des chambres</h1>
+	<button class="button-login">
+		<a href="{{ path('app_chambre_new') }}">Create new</a>
+	</button>
+	<div class="flex-box">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Tarif</th>
+					<th>Titre</th>
+					<th>Numero</th>
+					<th>Description</th>
+					<th>Image</th>
+					<th>Status</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for chambre in chambres %}
+					<tr>
+						<td>{{ chambre.id }}</td>
+						<td>{{ chambre.tarif }}&euro;</td>
+						<td>{{ chambre.titre }}</td>
+						<td>{{ chambre.numero }}</td>
+						<td>{{ chambre.description }}</td>
+						<td><img src="{{ asset('images/' ~ chambre.image ) }}" alt=""></td>
+						<td>{{ chambre.status ? 'Yes' : 'No' }}</td>
+						<td>
+							<button class="button-login-lg"><a href="{{ path('app_chambre_show', {'id': chambre.id}) }}">show</a></button>
+                            <button class="warning-button-lg">
+							<a href="{{ path('app_chambre_edit', {'id': chambre.id}) }}">edit</a></button>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="8">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+
+	</div>
+{% endblock %}
