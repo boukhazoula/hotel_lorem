@@ -35,12 +35,15 @@ class Reservation
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_depart = null;
-
+    
     #[ORM\Column]
     private ?float $total = null;
 
     #[ORM\Column(nullable: true)]
     private ?bool $paiement = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $date_jour = null;
 
     public function getId(): ?int
     {
@@ -119,17 +122,7 @@ class Reservation
         return $this;
     }
 
-    public function getDateJour(): ?\DateTimeInterface
-    {
-        return $this->date_jour;
-    }
-    
-    public function setDateJour(\DateTimeInterface $date_jour):self
-    {
-        $this->date_jour = $date_jour;
-
-        return $this;
-    }
+  
 
     public function getTotal(): ?float
     {
@@ -151,6 +144,18 @@ class Reservation
     public function setPaiement(bool $paiement): self
     {
         $this->paiement = $paiement;
+
+        return $this;
+    }
+
+    public function getDateJour(): ?\DateTimeInterface
+    {
+        return $this->date_jour;
+    }
+
+    public function setDateJour(\DateTimeInterface $date_jour): self
+    {
+        $this->date_jour = $date_jour;
 
         return $this;
     }

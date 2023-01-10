@@ -12,12 +12,11 @@
         {% endblock %}
 
         {% block javascripts %}
-            <script src="{{ asset('assets/js/js.js') }}"></script>
+            {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
     <body>
-   
-    {# {% include('include/_navbar.html.twig') %} #}
+    {% include('include/_navbar.html.twig') %}
         {% block body %}{% endblock %}
     </body>
 </html>

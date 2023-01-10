@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block body %}
+{{ form_start(form)}}
+<h4 class="titre-index">Completez vos donnees pour pouvoir faire une reservation</h4>
+	<div class="container-form">
+		<div class="container-login">
+			<div class="form-normal">
+				<div class="form-type">
+					{{ form_row(form.prenom) }}
+					<i class="fa-solid fa-user fa-lg"></i>
+				</div class="form-type">
+				<div class="form-type">
+					{{ form_row(form.nom) }}
+					<i class="fa-solid fa-user fa-lg"></i>
+				</div>
+				<div class="form-type">
+					{{ form_row(form.tel) }}
+					<i class="fa-solid fa-phone fa-lg"></i>
+				</div>
+				<div class="form-type location-dot">
+					{{ form_row(form.cp) }}
+					<i class="fa-solid fa-location-dot fa-lg"></i>
+				</div>
+				<div class="form-type location-dot">
+					{{ form_row(form.adresse) }}
+					<i class="fa-solid fa-location-dot fa-lg"></i>
+				</div>
+				<div class="form-type city">
+					{{ form_row(form.ville) }}
+					<i class="fa-solid fa-city fa-lg"></i>
+				</div>
+				<div class="form-type">
+					{{ form_row(form.pays) }}
+					<i class="fa-sharp fa-solid fa-flag fa-lg"></i>
+				</div>
+			</div>
+
+			<button type="submit" class="button-register">S'inscrire</button>
+		</div>
+	</div>
+	{{ form_end(form) }}
+</div>
+{% endblock %}

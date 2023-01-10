@@ -32,6 +32,7 @@ class UserController extends AbstractController
     #[Route('/resume-resa{id}', name: 'app_resume_resa')]
     public function resumResa($id, ReservationRepository $reservationRepository): Response
     {
-        return $this->render('user/resum.html.twig',['reservation' => $reservationRepository->find($id)]);
+        return $this->render('user_resa/index.html.twig',[
+            'reservation' => $reservationRepository->find($id)]);
     }
 }
