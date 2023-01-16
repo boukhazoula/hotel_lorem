@@ -27,7 +27,8 @@ class HomeController extends AbstractController
             $dateArrive = $form -> get('date_arrive') -> getData();
             $category = $form ->get('category') -> getData();
             $interval = $dateDepart->diff($dateArrive);
-            $tableauChambre = $selectChambreDispo->getChambreDispo($dateDepart, $dateArrive, $category);
+           
+            $tableauChambre = $selectChambreDispo->getChambreDispo($dateArrive,$dateDepart, $category);
 
         return $this->render('home/index.html.twig', [
             'form' => $form->createView(),
@@ -46,7 +47,7 @@ class HomeController extends AbstractController
     #[Route('/new_reservation/{id}/{date_depart}/{date_arrive}/{total}/{nom}/{tarifUnit}', name : 'app_user_reservation')]
     public function newReservation(DateTime $date_depart, DateTime $date_arrive, $id, ReservationRepository $reservationRepository, Tools $tools, $nom, $tarifUnit): Response{
         $user = $this->getUser();
-
+      
         if($user){
             if($tools->testDonnesUser()){
                 return $this->redirectToRoute('app_user');
@@ -58,10 +59,10 @@ class HomeController extends AbstractController
         $reservation = $tools->newReservation($date_depart, $date_arrive, $id,$nom,$tarifUnit);
 
         $reservationRepository->save($reservation, true);
-
+        
         $id_resa = $reservation ->getId();
 
 
-        return $this->redirectToRoute('app_resume_resa',['id' => $id_resa]);
+        return $this->redirectToRoute('checkout',['id' => $id_resa]);
     }
 }

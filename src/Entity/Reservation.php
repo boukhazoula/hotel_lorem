@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ReservationRepository;
@@ -44,6 +46,18 @@ class Reservation
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_jour = null;
+
+    #[ORM\OneToMany(mappedBy: 'reservation', targetEntity: Order::class)]
+    private Collection $orders;
+
+    #[ORM\OneToMany(mappedBy: 'commande', targetEntity: DetailCommende::class)]
+    private Collection $detailCommendes;
+
+    public function __construct()
+    {
+        $this->orders = new ArrayCollection();
+        $this->detailCommendes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -156,6 +170,66 @@ class Reservation
     public function setDateJour(\DateTimeInterface $date_jour): self
     {
         $this->date_jour = $date_jour;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Order>
+     */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Order $order): self
+    {
+        if (!$this->orders->contains($order)) {
+            $this->orders->add($order);
+            $order->setReservation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Order $order): self
+    {
+        if ($this->orders->removeElement($order)) {
+            // set the owning side to null (unless already changed)
+            if ($order->getReservation() === $this) {
+                $order->setReservation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, DetailCommende>
+     */
+    public function getDetailCommendes(): Collection
+    {
+        return $this->detailCommendes;
+    }
+
+    public function addDetailCommende(DetailCommende $detailCommende): self
+    {
+        if (!$this->detailCommendes->contains($detailCommende)) {
+            $this->detailCommendes->add($detailCommende);
+            $detailCommende->setCommande($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDetailCommende(DetailCommende $detailCommende): self
+    {
+        if ($this->detailCommendes->removeElement($detailCommende)) {
+            // set the owning side to null (unless already changed)
+            if ($detailCommende->getCommande() === $this) {
+                $detailCommende->setCommande(null);
+            }
+        }
 
         return $this;
     }

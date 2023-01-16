@@ -1,0 +1,61 @@
+ <section class = "rooms sec-width" id = "rooms">
+         
+            <div class = "title">
+                <h2>rooms</h2>
+            </div>
+          
+            <div class = "rooms-container">
+              
+			{% for chambres in chambres %}
+         
+                <!-- single room -->
+                <article class = "room">
+                    <div class = "room-image">
+                       <img src="{{ asset('images/' ~ chambres.image)}}" alt="...">
+                    </div>
+                    <div class = "room-text">
+                        <h3>{{ chambres.titre }}</h3>
+                        <ul>
+                            <li>
+                                <i class = "fas fa-arrow-alt-circle-right"></i>
+                                {{ chambres.category }}
+                            </li>
+                            <li>
+                                <i class = "fas fa-arrow-alt-circle-right"></i>
+                                Lorem ipsum dolor sit amet.
+                            </li>
+                            <li>
+                                <i class = "fas fa-arrow-alt-circle-right"></i>
+                               {% set total = chambres.tarif * nb_jour %}
+                               <div>
+                               {% if app.user %}
+                                    <button class="warning-button-lg"><a href="{{ path('app_user_reservation',{
+                                        'id' : chambres.id,
+                                        'nom': chambres.titre,
+                                        'tarifUnit': chambres.tarif,
+                                        'date_arrive' : date_arrive.format('Y-m-d'),
+                                        'date_depart' : date_depart.format('Y-m-d'),
+                                        'total' : total
+                                    }) }}"
+                                    >Réserver</a></button>
+                                    {% endif %}</div>
+									
+                            </li>
+                        </ul>
+                        <p>{{ chambres.description }}</p>
+                        
+                        <p class = "rate">
+                            <span>{{ chambres.tarif }}&euro; /</span> Per Night
+                        </p>
+                        <div class="resa-info">
+                            
+                        </div>
+                      
+                    </div>
+                    
+                </article>
+                <!-- end of single room -->
+            </div>
+            {% endfor %}
+		
+        </section>

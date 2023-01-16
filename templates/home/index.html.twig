@@ -5,19 +5,32 @@
 
 {% block body %}
   <header class = "header" id = "header">
-            <div class = "head-top">
-                <div class = "site-name">
-                    <span>GEEKPROBIN</span>
-                </div>
-                <div class = "site-nav">
-                    <span id = "nav-btn">MENU <i class = "fas fa-bars"></i></span>
-                </div>
-            </div>
+            <div class="container">
+      <nav>
+        <a href="#" class="logo"> <img src="images/logo.png" alt=""> </a>
+
+        <ul class="nav-menu">
+          <li> <a href="#home" class="nav-link">Home</a> </li>
+          <li> <a href="#about" class="nav-link">About</a> </li>
+          <li> <a href="#rooms" class="nav-link">Rooms</a> </li>
+          <li> <a href="#restaurant" class="nav-link">Restaurant</a> </li>
+          <li> <a href="#gallery" class="nav-link">Gallery</a> </li>
+          <li> <a href="#contact" class="nav-link">Contact</a> </li>
+        </ul>
+
+        <div class="hambuger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
+    </div>
 
             <div class = "head-bottom flex">
                 <h2>NICE AND COMFORTABLE PLACE TO STAY</h2>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto est quos veniam impedit numquam itaque voluptatum, dicta asperiores accusamus, eligendi neque ut incidunt, modi harum molestiae atque natus officia minima.</p>
-                <button type = "button" class = "head-btn">GET STARTED</button>
+                <button onclick="window.location.href = '#book';" type = "button" class = "head-btn">GET STARTED</button>
+                
             </div>
         </header>
         <!-- end of header -->
@@ -108,7 +121,7 @@
             </div>
         </section>
 
-         <div class = "book">
+         <div class = "book" id = "book">
         
 	
 		{{ form_start(form) }}
@@ -202,8 +215,8 @@
                                         'id' : chambres.id,
                                         'nom': chambres.titre,
                                         'tarifUnit': chambres.tarif,
-                                        'date_arrive' : date_arrive.format('Y-m-d'),
-                                        'date_depart' : date_depart.format('Y-m-d'),
+                                        'date_arrive' : date_arrive.format('Y-m-d H:i:s'),
+                                        'date_depart' : date_depart.format('Y-m-d H:i:s'),
                                         'total' : total
                                     }) }}"
                                     >Réserver</a></button>

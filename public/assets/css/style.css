@@ -13,10 +13,12 @@
 }
 html{
     scroll-behavior: smooth;
+   
 }
 body{
     line-height: 1.6;
 }
+
 .btn{
     font-size: 16px;
     text-transform: uppercase;
@@ -55,35 +57,105 @@ img{
 
 /* header */
 .header{
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2)), url("../../images/banner-img.jpg") center/cover no-repeat;
-    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2)), url("../../images/receptionists.jpg") center/cover no-repeat;
+    min-height: 50vh;
     color: #fff;
     padding: 25px;
     display: flex;
     flex-direction: column;
     align-content: stretch;
 }
-.head-top{
+li {
+    list-style: none;
+  }
+  a {
+    text-decoration: none;
+  }
+  .container {
+    max-width: 80%;
+    margin: auto;
+  }
+.head_container {
+    max-width: 90%;
+    margin: auto;
+  }
+  .logo img {
+    width: 40px;
+    float:left ;
+    margin-right: 600px;
+   
+  }
+  
+  header nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-top: -50px;
+  }
+  
+  .hambuger {
+    display: none;
+  }
+  
+  .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    transition: all 0.3s ease-in-out;
+    background-color: #fff;
+  }
+  
+  header ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  header ul li {
+    margin-left: 3rem;
+  }
+  
+  header ul li a {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: white;
+    transition: 0.5s;
+  }
+  
+  header ul li a:hover {
+    color: #C1B086;
+  }
+  
+.head-top{
+    display: flex;
+    justify-content: space-between
+   
+   
+    
+    
 }
-.head-top span{
+.fead-top span{
     cursor: pointer;
     letter-spacing: 2px;
     transition: var(--transition);
 }
-.head-top span:hover{
+.fead-top span ul{
+    list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.hfad-top span:hover{
     color: var(--yellow);
 }
-.head-bottom{
+.hfad-bottom{
     flex: 1;
     text-align: center;
     width: 80vw;
     margin: 0 auto;
 }
 .head-bottom h2{
-    padding: 22px 0;
+    padding-top: 150px ;
     font-size: 45px;
     border-bottom: 1px solid #fff;
 }
@@ -239,7 +311,7 @@ img{
 
 /* booking form */
 .book{
-    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url("../../images/banner-img.jpg") center/cover no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url("../../images/hotel.png") center/cover no-repeat;
     color: #fff;
     padding: 40px 60px;
 }
@@ -261,6 +333,10 @@ img{
 }
 .book-form label, .book-form input{
     width: 100%;
+}
+.container{
+   
+ 
 }
 
 
@@ -542,3 +618,99 @@ img{
     left: 0;
     z-index: 5;
 }
+
+/*--------------footer--------*/
+@media only screen and (max-width:768px) {
+    .home .box .text {
+      max-width: 100%;
+    }
+  
+    .home .box .text::after,
+    .home .image_item {
+      display: none;
+    }
+  
+    .restaurant .container,
+    .about .container,
+    .book .container {
+      flex-direction: column;
+    }
+  
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  
+    .book {
+      margin-top: 10%;
+      height: auto;
+    }
+  
+    .book .search {
+      width: 100%;
+    }
+  
+    .book .search input {
+      margin-top: 0;
+    }
+  
+    .left, .right {
+      width: 100%;
+    }
+  
+    .wrapper .text {
+      width: 80%;
+    }
+  
+    .room {
+      margin-bottom: 100px;
+    }
+  
+    .room .grid {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  
+    .restaurant .right {
+      padding: 0;
+      margin-top: 50px;
+    }
+  
+    footer .payment {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  @media only screen and (max-width:768px) {
+    .grid {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  
+    .home .text {
+      margin: 10% 0 0 0;
+    }
+  
+    .home h1 {
+      font-size: 40px;
+    }
+  
+    .about p,
+    .home p {
+      margin: 50px 0 0 0;
+    }
+  
+    .wrapper .text {
+      padding: 10px;
+      height: 600px;
+    }
+  
+    .heading_top {
+      margin-top: 100px;
+    }
+  
+    .heading_top button {
+      display: none;
+    }
+  
+    .restaurant .flex {
+      flex-direction: column-reverse;
+    }
+  }

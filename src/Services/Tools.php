@@ -14,6 +14,7 @@ use Symfony\Component\Security\Core\Security;
 
 class Tools
 {
+   
     private $security;
     private $chambreRepository;
     private $reservationRepository;
@@ -22,6 +23,7 @@ class Tools
         $this->security = $security;
         $this->chambreRepository = $chambreRepository;
         $this->reservationRepository = $reservationRepository;
+        
     }
 
     public function getUser(): ?User
@@ -83,4 +85,6 @@ class Tools
     
             return($reservation);
         }
+      
+
 }
