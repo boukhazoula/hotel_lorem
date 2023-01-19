@@ -57,10 +57,9 @@ img{
 
 /* header */
 .header{
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2)), url("../../images/receptionists.jpg") center/cover no-repeat;
-    min-height: 50vh;
-    min-width: max-content;
-    color: #fff;
+   
+    background-color: #000000;
+    color: rgb(255, 255, 255);
     padding: 25px;
     display: flex;
     flex-direction: column;
@@ -328,10 +327,7 @@ li {
 .book{
     background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url("../../images/hotel.png") center/cover no-repeat;
     color: #fff;
-    padding: 10px 20px 200PX;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 40px 60px;
 }
 .book-form{
     display: grid;
@@ -360,7 +356,7 @@ li {
 
 .foo{
     margin: 100px 0 16px 10px;
-    padding: 12px 15px;
+    padding: 12px 90px;
     border-radius: 5px;
     font-size: 17px;
     border: none;
@@ -407,7 +403,7 @@ li {
         grid-template-columns: 2fr 2fr 1fr 1fr 1fr 2fr;
     }
     .book{
-        height: 1vh;
+        height: 40vh;
         display: grid;
     }
 }

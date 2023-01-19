@@ -4,27 +4,26 @@
 {% endblock %}
 
 {% block body %}
-  <header class = "header" id = "header">
-            <div class="container">
-      <nav>
-        <a href="#" class="logo"> <img src="images/logo.png" alt=""> </a>
-
-        <ul class="nav-menu">
-          <li> <a href="#home" class="nav-link">Home</a> </li>
-          <li> <a href="#about" class="nav-link">About</a> </li>
-          <li> <a href="#rooms" class="nav-link">Rooms</a> </li>
-          <li> <a href="#restaurant" class="nav-link">Restaurant</a> </li>
-          <li> <a href="#gallery" class="nav-link">Gallery</a> </li>
-          <li> <a href="#contact" class="nav-link">Contact</a> </li>
-        </ul>
-
-        <div class="hambuger">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </div>
-      </nav>
-    </div>
+   <head>
+        <meta charset="utf-8">
+        <title>HOTEL GP</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="main.css">
+        <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
+        <link rel = "icon" href = "images/logo.png" type = "image/png">
+    </head>
+    <body>
+        
+        <!-- header -->
+        <header class = "header" id = "header">
+            <div class = "head-top">
+                <div class = "site-name">
+                    <span>GEEKPROBIN</span>
+                </div>
+                <div class = "site-nav">
+                    <span id = "nav-btn">MENU <i class = "fas fa-bars"></i></span>
+                </div>
+            </div>
 
             <div class = "head-bottom flex">
                 <h2>NICE AND COMFORTABLE PLACE TO STAY</h2>
@@ -34,27 +33,72 @@
             </div>
         </header>
         <!-- end of header -->
-
-        <!-- side navbar -->
         <div class = "sidenav" id = "sidenav">
             <span class = "cancel-btn" id = "cancel-btn">
                 <i class = "fas fa-times"></i>
             </span>
 
             <ul class = "navbar">
-                <li><a href = "#header">home</a></li>
-                <li><a href = "#services">services</a></li>
+                <li><a href = "{{ path('app_home') }}">home</a></li>
+				{% if app.user  %}
+                <li><a href = "{{ path('app_spa') }}">Profile</a></li>
                 <li><a href = "#rooms">rooms</a></li>
-                <li><a href = "#customers">customers</a></li>
-            </ul>
-            <button class = "btn sign-up">sign up</button>
-            <button class = "btn log-in">log in</button>
+                <li><a href = "{{ path('app_resto') }}">Contact</a></li>
+            
+			
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li><a href = "{{ path('app_category_index') }}">Category</a></li>
+                     <li><a href = "{{ path('app_chambre_index') }}">Chambre</a></li>
+                    <li><a href = "{{ path('app_reservation_index') }}">Reservation</a></li>
+						
+                </ul>
+           
+            
+					{% endif %}
+                     <button onclick="window.location.href = '{{ path('app_logout') }}';" class = "btn sign-up">Logout</button>
+				{% else %}
+				
+                        <button onclick="window.location.href = '{{ path('app_login') }}';" class = "btn sign-up">Logout</button>
+						
+					
+					
+						<button onclick="window.location.href = '{{ path('app_register') }}';" class = "btn sign-up">Register</button>
+					
+
+				{% endif %} 
         </div>
-        <!-- end of side navbar -->
+       
 
         <!-- fullscreen modal -->
         <div id = "modal"></div>
         <!-- end of fullscreen modal -->
+        {% for message in app.flashes('notice') %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endfor %}
+
+{% for message in app.flashes('success') %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endfor %}
+
+{% for message in app.flashes('danger') %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endfor %}
+
 
         <!-- body content  -->
         <section class = "services sec-width" id = "services">
@@ -187,59 +231,28 @@
             </div>
           
             <div class = "rooms-container">
-                {% if chambresDispo is defined %}
-			{% for chambres in chambresDispo %}
-         
-                <!-- single room -->
-                <article class = "room">
-                    <div class = "room-image">
-                       <img src="{{ asset('images/' ~ chambres.image)}}" alt="...">
-                    </div>
-                    <div class = "room-text">
-                        <h3>{{ chambres.titre }}</h3>
-                        <ul>
-                            <li>
-                                <i class = "fas fa-arrow-alt-circle-right"></i>
-                                {{ chambres.category }}
-                            </li>
-                            <li>
-                                <i class = "fas fa-arrow-alt-circle-right"></i>
-                                Lorem ipsum dolor sit amet.
-                            </li>
-                            <li>
-                                <i class = "fas fa-arrow-alt-circle-right"></i>
-                               {% set total = chambres.tarif * nb_jour %}
-                               <div>
-                               {% if app.user %}
-                                    <button class="warning-button-lg"><a href="{{ path('app_user_reservation',{
-                                        'id' : chambres.id,
-                                        'nom': chambres.titre,
-                                        'tarifUnit': chambres.tarif,
-                                        'date_arrive' : date_arrive.format('Y-m-d H:i:s'),
-                                        'date_depart' : date_depart.format('Y-m-d H:i:s'),
-                                        'total' : total
-                                    }) }}"
-                                    >Réserver</a></button>
-                                    {% endif %}</div>
+            	{% for chambre in chambres %}
+					<tr>
+						<td>{{ chambre.id }}</td>
+						<td>{{ chambre.tarif }}&euro;</td>
+						<td>{{ chambre.titre }}</td>
+						<td>{{ chambre.numero }}</td>
+						<td>{{ chambre.description }}</td>
+						<td><img src="{{ asset('images/' ~ chambre.image ) }}" alt=""></td>
+						<td>{{ chambre.status ? 'Yes' : 'No' }}</td>
+						<td>
+							<button class="button-login-lg"><a href="{{ path('app_chambre_show', {'id': chambre.id}) }}">show</a></button>
+                            <button class="warning-button-lg">
+							<a href="{{ path('app_chambre_edit', {'id': chambre.id}) }}">edit</a></button>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="8">no records found</td>
+					</tr>
+				{% endfor %}
 									
-                            </li>
-                        </ul>
-                        <p>{{ chambres.description }}</p>
-                        
-                        <p class = "rate">
-                            <span>{{ chambres.tarif }}&euro; /</span> Per Night
-                        </p>
-                        <div class="resa-info">
-                            
-                        </div>
                       
-                    </div>
-                    
-                </article>
-                <!-- end of single room -->
-            </div>
-            {% endfor %}
-		{% endif %}
         </section>
 
 

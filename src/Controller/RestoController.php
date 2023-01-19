@@ -13,14 +13,7 @@ class RestoController extends AbstractController
     #[Route('/resto', name: 'app_resto')]
     public function index(UserRepository $user,ReservationRepository $reservation): Response
     {
-        $id=$this->getUser()->getId();
-        // dd(  $id);
-        // $payment=$reservation->findAll(['id' => $id ]);
-       
-        $reservation= $reservation->findBy($id);
         
-        dd(  $reservation);
-        // $payment=$reservation->find(['id' => $id ]);
         
        
         return $this->render('resto/index.html.twig', [

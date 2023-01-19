@@ -2,45 +2,43 @@
 
 {% block title %}Hello RestoController!{% endblock %}
 
-{% block body %}
-<h1 class="titre-index">Restaurant</h1>
-<div class="resto-container">
-    <div class="resto-box">
-        <div class="resto-info">
-        <img src="{{ asset('ImagesHtml/' ~ "feudebois.jpg")}}"/>
-        </div>
-        <div class="resto-info text">
-        <p>
-            Nous vous accueillons avec plaisir dans notre restaurant, un espace convivial et chaleureux pour profiter d’un repas gastronomique turque.
-        </p>
-         <p>
-            Notre cuisine est basée sur la fraîcheur de nos produits, accompagnée d’une cuisson au feu de bois.
-        </p>
-        <p>
-            Notre cuisine est basée sur la variété de nos plats, au niveau des entrées, des plats mais également des desserts. Des pizzas turques, de la viande marinée mais également le fameux dessert turc Kunefe.
-        </p>
-        </div>
-    </div>
-    <div class="resto-box">
-        <div class="resto-info test">
-            <p>
-                Si vous souhaitez prendre part à une éxperience cullinaire inoubliable
-            </p>
-            <p>
-                Pourquoi ne pas réserver une chambre ?
-            </p>
-        </div>
-        <div class="resto-info">
-             <img src="{{ asset('ImagesHtml/' ~ "restohotel.jpg")}}"/>
-        </div>
-    </div>
+{% block stylesheets %}  
+<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+ {% endblock %}
 
-    <div class="resto-box">
-        <div class="resto-info serie-image">
-            <img src="{{ asset('ImagesHtml/' ~ "I.png")}}"/>
-            <img src="{{ asset('ImagesHtml/' ~ "II.png")}}"/>
-            <img src="{{ asset('ImagesHtml/' ~ "III.png")}}"/>
-            </div>
-        </div>
+{% block body %}
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>
+
+{% endblock %}
+{% block javascripts %}
+<script>
+var myModal = document.getElementById('myModal')
+var myInput = document.getElementById('myInput')
+
+myModal.addEventListener('shown.bs.modal', function () {
+    myInput.focus()
+})
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 {% endblock %}

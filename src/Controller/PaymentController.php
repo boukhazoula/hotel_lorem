@@ -2,12 +2,14 @@
 
 namespace App\Controller;
 
-use App\Entity\Reservation;
 use Stripe\Stripe;
+use App\Entity\Reservation;
 use Stripe\Checkout\Session;
 use App\Repository\UserRepository;
 use App\Repository\ReservationRepository;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -70,7 +72,7 @@ class PaymentController extends AbstractController
       
         $reservation->setPaiement(true);
         $reservationRepository->save($reservation,true);
-      
+        return $this->redirectToRoute('emailConfirmation', []);
         return $this->render('payment/success.html.twig', [
             'reservation'=>$reservation
         ]);
@@ -81,5 +83,55 @@ class PaymentController extends AbstractController
     public function cancelUrl(): Response
     {
         return $this->render('payment/cancel.html.twig', []);
+    }
+    #[Route('/stripe/emailConfirmation', name: 'emailConfirmation')]
+    public function emailConfirmation(ReservationRepository $reservation,MailerInterface $mailer,): Response
+    {
+        // Récuperation de l'adresse de livraion de l'utilisateur
+        $i = $reservation->findOneBy(['user' => $this->getUser()], ['id' => 'DESC'],['paiement' => 'true']);
+       
+     
+
+        // Récupération du panier complet et du total
+        
+      
+        $total =$i->getTotal();
+       
+        // Récupération des informations utilisateur
+        $user = $this->getUser();
+       
+        $mail= $user->getUserIdentifier();
+        
+        // Création et envoie du mail de confirmation de commande
+        $email = (new TemplatedEmail())
+        ->from('eatstorytest@gmail.com')
+        ->to($mail)
+        ->subject('Confirmation de commande')
+        ->htmlTemplate('payment/emailConfirmation.html.twig');
+        
+        
+        $email->context([
+            'nom' => $user->getNom(),
+           
+            'prenom' => $user->getPrenom(),
+            'from' => '	eatstorytest@gmail.com',
+           
+            'liens' => 'http://127.0.0.1:8001/profil',
+            'objectif' => 'Confirmation de commande',
+            'items'=>$i,
+            'total'=>$total,
+            
+        ]);
+
+        $mailer->send($email);
+      
+        // Suppression du panier
+        
+        $this->addFlash('success', "Merci pour votre commande, Votre plat vous sera bientot livré, vous pouvez suivre l'état de votre commande dans votre espace membre");
+        return $this->redirectToRoute('app_home', []);
+
+        return $this->render('payment/emailConfirmation.html.twig', [
+            'items'=>$reservation,
+        ]);
     }
 }

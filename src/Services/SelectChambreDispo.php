@@ -31,7 +31,7 @@ class SelectChambreDispo{
     public function getChambreDispo($date_depart, $date_arrive, $category)
     {
         $tab_id_chambre_Ndispo = $this->getChambreResa($date_depart, $date_arrive, $category);
-        $tab_chambre = $this->chambreRepository -> findAll();
+        $tab_chambre = $this->chambreRepository ->findby(["category"=>$category]);
         $tab_chambre_dispo = [];
         foreach($tab_chambre as $chambre){
             if(!in_array($chambre->getId(), $tab_id_chambre_Ndispo)){

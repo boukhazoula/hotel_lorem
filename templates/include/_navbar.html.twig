@@ -1,47 +1,94 @@
-{# <nav class="navbar">
-	<ul>
-		<li class="brand">
-			<a class="navbar-brand" href="{{ path('app_home') }}">Hotel Pro++</a>
-		</li>
-		{% if app.user %}
-			<li class="special deconnexion">
-				<a class="nav-link" aria-current="page" href="{{ path('app_logout') }}">Deconnexion</a>
-			</li>
-			{% if is_granted('ROLE_ADMIN') %}
-                <li>
-					<a class="nav-link" aria-current="page" href="{{ path('app_category_index') }}">Categories <i class="fa-solid fa-screwdriver-wrench"></i></a>
-				</li>
-                <li>
-					<a class="nav-link" aria-current="page" href="{{ path('app_chambre_index') }}">Chambre <i class="fa-solid fa-screwdriver-wrench"></i></a>
-				</li>
-                 <li>
-					<a class="nav-link" aria-current="page" href="{{ path('app_reservation_index') }}">Réservations <i class="fa-solid fa-screwdriver-wrench"></i></a>
-				</li>
+  <head>
+        <meta charset="utf-8">
+        <title>HOTEL GP</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="main.css">
+        <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
+        <link rel = "icon" href = "images/logo.png" type = "image/png">
+    </head>
+    <body>
+        
+        <!-- header -->
+        <header class = "header" id = "header">
+            <div class = "head-top">
+                <div class = "site-name">
+                    <span>GEEKPROBIN</span>
+                </div>
+                <div class = "site-nav">
+                    <span id = "nav-btn">MENU <i class = "fas fa-bars"></i></span>
+                </div>
+            </div>
+
+            <div class = "head-bottom flex">
+                <h2>NICE AND COMFORTABLE PLACE TO STAY</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto est quos veniam impedit numquam itaque voluptatum, dicta asperiores accusamus, eligendi neque ut incidunt, modi harum molestiae atque natus officia minima.</p>
+                <button type = "button" class = "head-btn">GET STARTED</button>
+            </div>
+        </header>
+        <!-- end of header -->
+
+        <!-- side navbar -->
+        <div class = "sidenav" id = "sidenav">
+            <span class = "cancel-btn" id = "cancel-btn">
+                <i class = "fas fa-times"></i>
+            </span>
+
+            <ul class = "navbar">
+                <li><a href = "{{ path('app_home') }}">home</a></li>
+				{% if app.user  %}
+                <li><a href = "{{ path('app_spa') }}">Profile</a></li>
+                <li><a href = "#rooms">rooms</a></li>
+                <li><a href = "{{ path('app_resto') }}">Contact</a></li>
+            </ul>
+            <button onclick="window.location.href = '{{ path('app_logout') }}';" class = "btn sign-up">Logout</button>
+            <button class = "btn log-in">log in</button>
 			{% endif %}
-			<li>
-				<a class="nav-link" aria-current="page" href="{{ path('app_spa') }}">Notre Spa</a>
-			</li>
-			<li>
-				<a class="nav-link" aria-current="page" href="{{ path('app_resto') }}">Restaurant</a>
-			</li>
-			
-		{% else %}
-			<li class="special">
-				<a class="nav-link" aria-current="page" href="{{ path('app_register') }}">Inscription</a>
-			</li>
-			<li class="special">
-				<a class="nav-link" aria-current="page" href="{{ path('app_login') }}">Connexion</a>
-			</li>
-		{% endif %}
-	</ul>
-</nav> #}
-<header>
- <nav class="navbar">
-        <a data-aos="zoom-in-left" data-aos-delay="300" href="#home">home</a>
-        <a data-aos="zoom-in-left" data-aos-delay="450" href="#about">about</a>
-        <a data-aos="zoom-in-left" data-aos-delay="600" href="#destination">destination</a>
-        <a data-aos="zoom-in-left" data-aos-delay="750" href="#services">services</a>
-        <a data-aos="zoom-in-left" data-aos-delay="900" href="#gallery">gallery</a>
-        <a data-aos="zoom-in-left" data-aos-delay="1150" href="#blogs">blogs</a>
-    </nav>
-</header>
+        </div>
+        <!-- end of side navbar -->
+
+        <!-- fullscreen modal -->
+        <div id = "modal"></div>
+        <!-- end of fullscreen modal -->
+
+
+        <!-- end of side navbar -->
+			{# {% if app.user  %}
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="{{ path('app_logout') }}">Logout</a>
+
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="{{ path('app_profile_new') }}">Profile</a>
+
+					</li>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="{{ path('app_contact_new') }}">Contact</a>
+
+					</li>
+					{% if is_granted('ROLE_ADMIN') %}
+
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href="{{ path('app_category_index') }}">category</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href="{{ path('app_chambre_index') }}">chambre</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href="{{ path('app_reservation_index') }}">Reservation</a>
+						</li>
+
+					{% endif %}
+
+
+				{% else %}
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="{{ path('app_login') }}">Login</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="{{ path('app_register') }}">Register</a>
+					</li>
+
+				{% endif %} #}
+				 <script src="{{ asset('assets/js/js.js') }}"></script>
