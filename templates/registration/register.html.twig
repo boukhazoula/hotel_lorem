@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}  
+<link rel="stylesheet" href="{{ asset('assets/css/login.css') }}">
+ {% endblock %}
 {% block title %}Register{% endblock %}
 
 {% block body %}
@@ -7,7 +9,7 @@
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
 
-    <h1>Register</h1>
+    
 
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.email) }}
@@ -18,4 +20,54 @@
 
         <button type="submit" class="btn">Register</button>
     {{ form_end(registrationForm) }}
+     {{ form_start(registrationForm) }}
+     
+       {# <div class="login">
+       
+            <div class="login__content">
+            
+                <div class="login__img">
+                    <img src="../../images/undraw_travel_booking_re_6umu.svg" alt="login__registre">
+                </div>
+           
+                <div class="login__forms">
+                    <form action="" class="login__registre" id="login-in">
+                        <h1 class="login__title">S'inscrire</h1>
+     {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}  #}
+                        {# <div class="login__box">
+                            <i class='bx bx-user login__icon'></i>
+                          
+
+                             {{ form_widget(registrationForm.email,{ 'attr': {'class': 'login__input'} }) }}
+                        </div>
+    
+                        <div class="login__box">
+                            <i class='bx bx-lock-alt login__icon'></i>
+                              {{ form_widget(registrationForm.plainPassword.first,{ 'attr': {'class': 'login__input'} }) }}
+                             
+                        </div>
+                          <div class="login__box">
+                            <i class='bx bx-lock-alt login__icon'></i>
+                              {{ form_widget(registrationForm.plainPassword.second,{ 'attr': {'class': 'login__input'} }) }}
+                             
+                        </div>
+
+                        <a href="{{ path('app_forgot_password_request')}}" class="login__forgot">mot de passe oublié?</a>
+                         {# <button   type="submit" class="login__button">S'inscrire</button> #}
+                         {# <input  class="login__button" type="submit" value="S'inscrire">
+                        
+                            
+                        <div>
+                                
+                            <span class="login__account">Déjà inscrit ?</span>
+                        
+                             <a class="login__signin" href="{{ path('app_login') }}">Se connecter</a>
+                        </div>
+                    </form> #}
+
+
+        {# {{ form_end(registrationForm) }}
+        {% block javascript  %}<script src="{{ asset('assets/js/login.js') }}"></script>{% endblock %} #}
 {% endblock %}

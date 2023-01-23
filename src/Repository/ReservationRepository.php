@@ -42,19 +42,19 @@ class ReservationRepository extends ServiceEntityRepository
 /**
     * @return Reservation[] Returns an array of Reservation objects
    */
-  public function findChambreResa($depart, $retour, $category): array
+  public function findChambreResa($arrive, $depart, $category): array
   {
       return $this->createQueryBuilder('r')
         ->select('chambre','r')
         ->join('r.chambre', 'chambre')
         ->andWhere('chambre.category in (:categorie)')
-          ->andWhere('r.date_arrive < :retour')
-          ->andWhere('r.date_depart > :depart')
-            ->setParameter('categorie', $category)
-          ->setParameter('depart', $depart)
-          ->setParameter('retour', $retour)
-          ->orderBy('r.id', 'ASC')
-          ->setMaxResults(10)
+        ->andWhere('r.date_arrive < :depart')
+        ->andWhere('r.date_depart > :arrive')
+        ->setParameter('categorie', $category)
+        ->setParameter('arrive', $arrive)
+        ->setParameter('depart', $depart)
+        ->orderBy('r.id', 'ASC')
+          
           ->getQuery()
           ->getResult()
       ;

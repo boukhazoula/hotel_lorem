@@ -1,9 +1,11 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}  
+<link rel="stylesheet" href="{{ asset('assets/css/login.css') }}">
+ {% endblock %}
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-<form method="post">
+{# <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
@@ -18,11 +20,11 @@
     <label for="inputEmail">Email</label>
     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
     <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required> #}
 
-    <input type="hidden" name="_csrf_token"
+    {# <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
-    >
+    > #}
 
     {#
         Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
@@ -35,9 +37,61 @@
         </div>
     #}
 
-    <button class="btn btn-lg btn-primary" type="submit">
+    {# <button class="btn btn-lg btn-primary" type="submit">
         Sign in
     </button>
 </form>
-<p><a href=" {{ path('app_forgot_password_request')}} "></a></p>
+<p><a href=" {{ path('app_forgot_password_request')}} "></a></p> #}
+ <div class="login">
+       
+            <div class="login__content">
+            
+                <div class="login__img">
+                    <img src="../../images/undraw_travel_booking_re_6umu.svg" alt="login__registre">
+                </div>
+           
+                <div class="login__forms">
+                    <form action="" class="login__registre" id="login-in">
+                        <h1 class="login__title">Se connecter</h1>
+                         {% if error %}
+                    <div class="login__title">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                 {% endif %}
+                 {% if app.user %}
+                 <div class="login__message">
+            Vous êtes connecté en tant que : {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                 </div>
+                {% endif %}
+    
+
+                        <div class="login__box">
+                            <i class='bx bx-user login__icon'></i>
+                          
+                             <input type="email" value="{{ last_username }}" name="email" id="inputEmail"  class="login__input" autocomplete="email" required autofocus>
+                             
+                        </div>
+    
+                       
+                          <div class="login__box">
+                            <i class='bx bx-lock-alt login__icon'></i>
+                             <input type="password" name="password" id="inputPassword"  class="login__input" autocomplete="current-password" required>
+                             
+                        </div>
+                         
+                           
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                             
+                        
+    
+
+                        <a href="{{ path('app_forgot_password_request')}}" class="login__forgot">mot de passe oublié?</a>
+                         <button  type="submit" class="login__button">Se connecter</button>
+                        
+                            
+                        <div>
+                                
+                            <span class="login__account">Pas encore inscrit ?</span>
+                        
+                             <a class="login__signin" href="{{ path('app_register') }}">S'inscrire</a>
+                        </div>
+                    </form>
 {% endblock %}

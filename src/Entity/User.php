@@ -54,6 +54,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 80, nullable: true)]
     private ?string $pays = null;
 
+   
+
+   
+
     public function getId(): ?int
     {
         return $this->id;
@@ -238,4 +242,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+   
+
+    
+
 }

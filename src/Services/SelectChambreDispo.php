@@ -15,11 +15,12 @@ class SelectChambreDispo{
         $this->reservationRepository = $reservationRepository;
     }
 
-    public function getChambreResa($date_depart, $date_arrive, $category)
+    public function getChambreResa( $date_arrive,$date_depart, $category)
     {
+        
         $tab_id = [];
-        $liste_chambre_resa = $this->reservationRepository-> findChambreResa($date_depart, $date_arrive, $category);
-
+        $liste_chambre_resa = $this->reservationRepository-> findChambreResa( $date_arrive,$date_depart, $category);
+       
         foreach( $liste_chambre_resa as $resa_chambre){
             $tab_id[]= $resa_chambre->getChambre()->getId();
         }
@@ -30,7 +31,7 @@ class SelectChambreDispo{
     public function getChambreDispo($date_depart, $date_arrive, $category)
     {
         $tab_id_chambre_Ndispo = $this->getChambreResa($date_depart, $date_arrive, $category);
-        $tab_chambre = $this->chambreRepository -> findAll();
+        $tab_chambre = $this->chambreRepository ->findby(["category"=>$category]);
         $tab_chambre_dispo = [];
         foreach($tab_chambre as $chambre){
             if(!in_array($chambre->getId(), $tab_id_chambre_Ndispo)){
