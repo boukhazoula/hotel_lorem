@@ -1,24 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!
-{% endblock %}
+{% block title %}
+Bienvenue au hotelOREM, un hôtel de légende{% endblock %}
 
 {% block body %}
-   <head>
-        <meta charset="utf-8">
-        <title>HOTEL GP</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="main.css">
-        <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
-        <link rel = "icon" href = "images/logo.png" type = "image/png">
-    </head>
+  
     <body>
         
         <!-- header -->
         <header class = "header" id = "header">
             <div class = "head-top">
                 <div class = "site-name">
-                    <span>GEEKPROBIN</span>
+                    <span>HotelOREM</span>
                 </div>
                 <div class = "site-nav">
                     <span id = "nav-btn">MENU <i class = "fas fa-bars"></i></span>
@@ -26,9 +19,9 @@
             </div>
 
             <div class = "head-bottom flex">
-                <h2>NICE AND COMFORTABLE PLACE TO STAY</h2>
+                <h1>L'ENDROIT PARFAIT POUR VOUS RESSOURCER</h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto est quos veniam impedit numquam itaque voluptatum, dicta asperiores accusamus, eligendi neque ut incidunt, modi harum molestiae atque natus officia minima.</p>
-                <button onclick="window.location.href = '#book';" type = "button" class = "head-btn">GET STARTED</button>
+                <button onclick="window.location.href = '#book';" type = "button" class = "head-btn">RESERVER</button>
                 
             </div>
         </header>
@@ -37,32 +30,33 @@
             <span class = "cancel-btn" id = "cancel-btn">
                 <i class = "fas fa-times"></i>
             </span>
+          
 
             <ul class = "navbar">
-                <li><a href = "{{ path('app_home') }}">home</a></li>
+                <li><a href = "{{ path('app_home') }}">Accueil</a></li>
 				{% if app.user  %}
-                <li><a href = "{{ path('app_spa') }}">Profile</a></li>
+                <li><a href = "{{ path('app_spa') }}">Mon compte</a></li>
                 <li><a href = "#rooms">rooms</a></li>
                 <li><a href = "{{ path('app_resto') }}">Contact</a></li>
             
 			
                 {% if is_granted('ROLE_ADMIN') %}
-                    <li><a href = "{{ path('app_category_index') }}">Category</a></li>
-                     <li><a href = "{{ path('app_chambre_index') }}">Chambre</a></li>
-                    <li><a href = "{{ path('app_reservation_index') }}">Reservation</a></li>
+                    <li><a href = "{{ path('app_category_index') }}">Ajout de catégorie</a></li>
+                     <li><a href = "{{ path('app_chambre_index') }}">Ajout de Chambre</a></li>
+                    <li><a href = "{{ path('app_reservation_index') }}">Voir les Reservations</a></li>
 						
                 </ul>
            
             
 					{% endif %}
-                     <button onclick="window.location.href = '{{ path('app_logout') }}';" class = "btn sign-up">Logout</button>
+                     <button onclick="window.location.href = '{{ path('app_logout') }}';" class = "btn sign-up">Déconnexion</button>
 				{% else %}
 				
-                        <button onclick="window.location.href = '{{ path('app_login') }}';" class = "btn sign-up">Logout</button>
+                        <button onclick="window.location.href = '{{ path('app_login') }}';" class = "btn sign-up">Se connecter</button>
 						
 					
 					
-						<button onclick="window.location.href = '{{ path('app_register') }}';" class = "btn sign-up">Register</button>
+						<button onclick="window.location.href = '{{ path('app_register') }}';" class = "btn sign-up">S'inscrire</button>
 					
 
 				{% endif %} 
@@ -72,23 +66,31 @@
         <!-- fullscreen modal -->
         <div id = "modal"></div>
         <!-- end of fullscreen modal -->
-        {% for message in app.flashes('notice') %}
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-    {{ message }}
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
-{% endfor %}
+        
+         {% for message in app.flashes('notice') %}
+         <div class="popup">
+        <button id="close2">&times;</button>
+        <h2>Bienvenue</h2>
+        <p>
+             {{ message }}
+        </p>
+       
+    </div>
+    {% endfor %}
+    
+         {% for message in app.flashes('success') %}
+         <div class="popup">
+        <button id="close2">&times;</button>
+        <h2>Bienvenue</h2>
+        <p>
+             {{ message }}
+        </p>
+       
+    </div>
+    {% endfor %}
 
-{% for message in app.flashes('success') %}
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-    {{ message }}
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
-{% endfor %}
+
+
 
 {% for message in app.flashes('danger') %}
 <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -114,7 +116,7 @@
                         </span>
                     </div>
                     <div class = "service-content">
-                        <h2>Food Service/ Food Runner</h2>
+                        <h2>Restauration</h2>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias blanditiis tempore officia accusamus asperiores. Illum maxime eligendi necessitatibus laudantium iste nisi pariatur doloremque ut illo similique voluptatum enim distinctio perferendis, ad ipsam aspernatur omnis rem autem ex, reiciendis corporis suscipit!</p>
                         <button type = "button" class = "btn">Know More</button>
                     </div>
@@ -128,7 +130,7 @@
                         </span>
                     </div>
                     <div class = "service-content">
-                        <h2>Refreshment</h2>
+                        <h2>Loisirs</h2>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias blanditiis tempore officia accusamus asperiores. Illum maxime eligendi necessitatibus laudantium iste nisi pariatur doloremque ut illo similique voluptatum enim distinctio perferendis, ad ipsam aspernatur omnis rem autem ex, reiciendis corporis suscipit!</p>
                         <button type = "button" class = "btn">Know More</button>
                     </div>
@@ -142,7 +144,7 @@
                         </span>
                     </div>
                     <div class = "service-content">
-                        <h2>Housekeeping</h2>
+                        <h2>Hygiène</h2>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias blanditiis tempore officia accusamus asperiores. Illum maxime eligendi necessitatibus laudantium iste nisi pariatur doloremque ut illo similique voluptatum enim distinctio perferendis, ad ipsam aspernatur omnis rem autem ex, reiciendis corporis suscipit!</p>
                         <button type = "button" class = "btn">Know More</button>
                     </div>
@@ -156,7 +158,7 @@
                         </span>
                     </div>
                     <div class = "service-content">
-                        <h2>Room Security</h2>
+                        <h2>Sécurité</h2>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias blanditiis tempore officia accusamus asperiores. Illum maxime eligendi necessitatibus laudantium iste nisi pariatur doloremque ut illo similique voluptatum enim distinctio perferendis, ad ipsam aspernatur omnis rem autem ex, reiciendis corporis suscipit!</p>
                         <button type = "button" class = "btn">Know More</button>
                     </div>
@@ -227,7 +229,7 @@
        <section class = "rooms sec-width" id = "rooms">
          
             <div class = "title">
-                <h2>rooms</h2>
+                <h2>Chambres</h2>
             </div>
           
             <div class = "rooms-container">
@@ -238,7 +240,7 @@
 						<td>{{ chambre.titre }}</td>
 						<td>{{ chambre.numero }}</td>
 						<td>{{ chambre.description }}</td>
-						<td><img src="{{ asset('images/' ~ chambre.image ) }}" alt=""></td>
+						<td><img src="{{ asset('images/' ~ chambre.image ) }}" alt="Images de chambre"></td>
 						<td>{{ chambre.status ? 'Yes' : 'No' }}</td>
 						<td>
 							<button class="button-login-lg"><a href="{{ path('app_chambre_show', {'id': chambre.id}) }}">show</a></button>
@@ -259,7 +261,7 @@
         <section class = "customers" id = "customers">
             <div class = "sec-width">
                 <div class = "title">
-                    <h2>customers</h2>
+                    <h2>Nos clients</h2>
                 </div>
                 <div class = "customers-container">
                     <!-- single customer -->
@@ -271,10 +273,10 @@
                             <span><i class = "fas fa-star"></i></span>
                             <span><i class = "far fa-star"></i></span>
                         </div>
-                        <h3>We Loved it</h3>
+                        <h3>J'ai passé un super séjour !</h3>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat beatae veritatis provident eveniet praesentium veniam cum iusto distinctio esse, vero est autem, eius optio cupiditate?</p>
                         <img src = "images/cus1.jpg" alt = "customer image">
-                        <span>Customer Name, Country</span>
+                        <span>George VILAR, France</span>
                     </div>
                     <!-- end of single customer -->
                     <!-- single customer -->
@@ -286,10 +288,10 @@
                             <span><i class = "fas fa-star"></i></span>
                             <span><i class = "far fa-star"></i></span>
                         </div>
-                        <h3>Comfortable Living</h3>
+                        <h3>Etablissement confortable et calme</h3>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat beatae veritatis provident eveniet praesentium veniam cum iusto distinctio esse, vero est autem, eius optio cupiditate?</p>
                         <img src = "images/cus2.jpg" alt = "customer image">
-                        <span>Customer Name, Country</span>
+                        <span>Maria CANCELES, Espagne</span>
                     </div>
                     <!-- end of single customer -->
                     <!-- single customer -->
@@ -301,10 +303,10 @@
                             <span><i class = "fas fa-star"></i></span>
                             <span><i class = "far fa-star"></i></span>
                         </div>
-                        <h3>Nice Place</h3>
+                        <h3>Magnifique vue</h3>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat beatae veritatis provident eveniet praesentium veniam cum iusto distinctio esse, vero est autem, eius optio cupiditate?</p>
                         <img src = "images/cus3.jpg" alt = "customer image">
-                        <span>Customer Name, Country</span>
+                        <span>Nick GUITORA, Hongrie</span>
                     </div>
                     <!-- end of single customer -->
                 </div>
@@ -316,8 +318,10 @@
         <footer class = "footer">
             <div class = "footer-container">
                 <div>
-                    <h2>About Us </h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque sapiente mollitia doloribus provident? Eos quisquam aliquid vel dolorum, impedit culpa.</p>
+                    <h2>A propos de nous </h2>
+                    <p>Lorem ipsum dolor sit amet consectetur <br>  adipisicing elit.
+                    Itaque sapiente mollitia doloribus provident? Eos quisquam aliquid vel dolorum,<br>
+                     impedit culpa.</p>
                     <ul class = "social-icons">
                         <li class = "flex">
                             <i class = "fa fa-twitter fa-2x"></i>
@@ -332,29 +336,30 @@
                 </div>
 
                 <div>
-                    <h2>Useful Links</h2>
-                    <a href = "#">Blog</a>
-                    <a href = "#">Rooms</a>
-                    <a href = "#">Subscription</a>
-                    <a href = "#">Gift Card</a>
+                    <h2>Liens utiles</h2>
+                    <a href = "#">Mentions légales</a>
+                    <a href = "#">Politiques de confidentialité</a>
+                    <a href = "#">© Copyright 2022 HotelOREM</a>
+                    
                 </div>
+                
 
                 <div>
-                    <h2>Privacy</h2>
-                    <a href = "#">Career</a>
-                    <a href = "#">About Us</a>
-                    <a href = "#">Contact Us</a>
+                    <h2>Contact</h2>
+                    <a href = "#">Nous rejoindre</a>
+                    <a href = "#">Besoin d'aide ?</a>
                     <a href = "#">Services</a>
                 </div>
+                
 
                 <div>
-                    <h2>Have A Question</h2>
+                    <h2>Coordonnées</h2>
                     <div class = "contact-item">
                         <span>
                             <i class = "fas fa-map-marker-alt"></i>
                         </span>
                         <span>
-                            203 Fake St.Mountain View, San Francisco, California, USA
+                            13 rue Guy Moquet, Paris,75014,FRANCE
                         </span>
                     </div>
                     <div class = "contact-item">
@@ -362,7 +367,7 @@
                             <i class = "fas fa-phone-alt"></i>
                         </span>
                         <span>
-                            +84545 37534 48
+                            +336 78 45 52 33
                         </span>
                     </div>
                     <div class = "contact-item">
@@ -370,11 +375,11 @@
                             <i class = "fas fa-envelope"></i>
                         </span>
                         <span>
-                            info@domain.com
+                            hotelOREM@gmail.com
                         </span>
                     </div>
                 </div>
-            </div>
+     
         </footer>
 
 {% for message in app.flashes('success') %}

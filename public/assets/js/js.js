@@ -1,10 +1,8 @@
 const navBtn = document.getElementById('nav-btn');
-const navch = document.getElementById('cha');
-console.log(navch );
 const cancelBtn = document.getElementById('cancel-btn');
-const cancelch = document.getElementById('cancel-ch');
-console.log(cancelch)
+
 const sideNav = document.getElementById('sidenav');
+
 const modal = document.getElementById('modal');
 
 navBtn.addEventListener("click", function(){
@@ -13,15 +11,27 @@ navBtn.addEventListener("click", function(){
 });
 
 cancelBtn.addEventListener('click', function(){
-    navch.classList.remove('alert alert-danger alert-dismissible fade show');
-    console.log( navch.classList.remove('cha'))
-
+    sideNav.classList.remove('show');
+    modal.classList.remove('showModal');
 });
-
-
+console.log(cancelBtn)
 window.addEventListener('click', function(event){
     if(event.target === modal){
         sideNav.classList.remove('show');
         modal.classList.remove('showModal');
     }
+});
+
+window.addEventListener("load", function(){
+    setTimeout(
+        function open(event){
+            document.querySelector(".popup").style.display = "block";
+        },
+        1000
+    )
+});
+
+
+document.querySelector("#close2").addEventListener("click", function(){
+    document.querySelector(".popup").style.display = "none";
 });

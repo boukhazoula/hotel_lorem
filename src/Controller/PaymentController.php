@@ -127,7 +127,8 @@ class PaymentController extends AbstractController
       
         // Suppression du panier
         
-        $this->addFlash('success', "Merci pour votre commande, Votre plat vous sera bientot livré, vous pouvez suivre l'état de votre commande dans votre espace membre");
+        $this->addFlash('success',
+         'Félicitations ! Votre compte est maintenant activé.');
         return $this->redirectToRoute('app_home', []);
 
         return $this->render('payment/emailConfirmation.html.twig', [
